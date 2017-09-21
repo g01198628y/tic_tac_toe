@@ -44,3 +44,31 @@ def win_check(board, mark):
     (board[7] == mark and board[5] == mark and board[3] == mark) or # diagonal
     (board[9] == mark and board[5] == mark and board[1] == mark)) # diagonal
 
+import random
+def choose_first():
+    if random.randint(0,1) == 0:
+        return 'Player1'
+    else:
+        return 'Player2'
+
+def space_check(board, position):
+    return board[position] == ' '
+
+def full_board_check(board):
+
+    for i in range(1,10):
+        if space_check(board,i):
+            return False
+    return True
+
+def player_choice(board):
+    postion = ' '
+
+    while postion not in '1 2 3 4 5 6 7 8 9'.split() or not space_check(board,int(postion)):
+        position = raw_input('Choose your next position: (1-9) ')
+    
+    return int(position)
+
+def replay():
+
+    return raw_input('Do you want to play again? Enter Yes or No').lower().startswith('y')
